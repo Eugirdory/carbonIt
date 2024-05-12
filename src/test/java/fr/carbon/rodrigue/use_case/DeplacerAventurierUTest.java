@@ -2,7 +2,6 @@ package fr.carbon.rodrigue.use_case;
 
 import fr.carbon.rodrigue.entity.Aventurier;
 import fr.carbon.rodrigue.entity.Carte;
-import fr.carbon.rodrigue.entity.Case;
 import fr.carbon.rodrigue.entity.Position;
 import fr.carbon.rodrigue.entity.Tresor;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ import static fr.carbon.rodrigue.entity.OrientationEnum.SUD;
 import static fr.carbon.rodrigue.fixture.AventurierTestBuilder.unAventurier;
 import static fr.carbon.rodrigue.fixture.CarteTestBuilder.unCarte;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.map;
 
 @ExtendWith(MockitoExtension.class)
 class DeplacerAventurierUTest {

@@ -5,7 +5,6 @@ import fr.carbon.rodrigue.entity.Carte;
 import fr.carbon.rodrigue.entity.Case;
 import fr.carbon.rodrigue.entity.Position;
 import fr.carbon.rodrigue.entity.Tresor;
-import fr.carbon.rodrigue.use_case.interactor.GenererCarte;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
