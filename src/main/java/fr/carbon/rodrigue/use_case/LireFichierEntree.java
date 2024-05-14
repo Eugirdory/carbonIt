@@ -8,6 +8,7 @@ import fr.carbon.rodrigue.entity.Tresor;
 import fr.carbon.rodrigue.use_case.interactor.GenererCarte;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -24,7 +25,8 @@ import static fr.carbon.rodrigue.entity.OrientationEnum.recupererOrientationEnum
 @Component
 @RequiredArgsConstructor
 public class LireFichierEntree {
-    private static final String REPERTOIRE_DEPOT = "src/main/resources/depot/";
+    @Value("${repertoire.depot}")
+    private String REPERTOIRE_DEPOT;
     private static final String SEPARATEUR = "-";
     private final GenererCarte genererCarte;
 
