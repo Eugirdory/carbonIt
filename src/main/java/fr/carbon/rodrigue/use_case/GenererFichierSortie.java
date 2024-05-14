@@ -22,7 +22,7 @@ public class GenererFichierSortie {
 
     public void executer(Carte carte) {
         if (Objects.isNull(carte)) {
-            return;
+            throw new RuntimeException("Pas de carte, pas de resultat");
         }
         try {
             FileWriter fileWriter = new FileWriter(REPERTOIRE, false);

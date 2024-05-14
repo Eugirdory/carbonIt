@@ -46,11 +46,9 @@ public class LireFichierEntree {
         BufferedReader br = new BufferedReader(fr);
         String ligne;
             while ((ligne = br.readLine()) != null) {
-                List<String> collect = new ArrayList<>(Stream.of(ligne.replaceAll("\\s", Strings.EMPTY).split(SEPARATEUR, -1))
-                        .toList());
-
-                String typeElement = collect.remove(0);
-                creerElement(typeElement, collect, this.montagnes, this.aventuriers, this.tresors);
+                List<String> collecte = parserLigne(ligne);
+                String typeElement = collecte.remove(0);
+                creerElement(typeElement, collecte, this.montagnes, this.aventuriers, this.tresors);
             }
             fr.close();
         } catch (IOException e) {
@@ -58,6 +56,11 @@ public class LireFichierEntree {
         }
         Case[][] matrice = new Case[this.nommbreVertical][this.nommbreHorizontal];
         return genererCarte.executer(matrice, this.tresors, this.montagnes, this.aventuriers);
+    }
+
+    private ArrayList<String> parserLigne(String ligne) {
+        return new ArrayList<>(Stream.of(ligne.replaceAll("\\s", Strings.EMPTY).split(SEPARATEUR, -1))
+                .toList());
     }
 
     private void creerElement(String typeElement, List<String> collect, List<Case> montagnes, List<Aventurier> aventuriers, List<Tresor> tresors) {

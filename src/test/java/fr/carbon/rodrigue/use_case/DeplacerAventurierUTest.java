@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import static fr.carbon.rodrigue.entity.OrientationEnum.EST;
 import static fr.carbon.rodrigue.entity.OrientationEnum.NORD;
@@ -20,6 +21,7 @@ import static fr.carbon.rodrigue.entity.OrientationEnum.SUD;
 import static fr.carbon.rodrigue.fixture.AventurierTestBuilder.unAventurier;
 import static fr.carbon.rodrigue.fixture.CarteTestBuilder.unCarte;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class DeplacerAventurierUTest {
@@ -195,11 +197,11 @@ class DeplacerAventurierUTest {
                 .build();
 
         Position est = Position.builder()
-                .horizontale(0)
+                .horizontale(2)
                 .vertical(1)
                 .build();
         Position ouest = Position.builder()
-                .horizontale(2)
+                .horizontale(0)
                 .vertical(1)
                 .build();
 
@@ -237,6 +239,19 @@ class DeplacerAventurierUTest {
                 .build();
 
         Carte result = deplacerAventurier.executer(carte);
-        assertThat(result).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(attendu);
+        assertThat(result).usingRecursiveComparison().isEqualTo(attendu);
+    }
+
+    @Test
+    void executer_cas_non_passant_carte_null() {
+        assertThrows(RuntimeException.class,
+                () -> deplacerAventurier.executer(null));
+    }
+
+    @Test
+    void xecuter_cas_non_passant_aucun_aventurier() {
+        Carte carte = unCarte().parDefaut().build();
+        assertThrows(NoSuchElementException.class,
+                () -> deplacerAventurier.executer(carte));
     }
 }

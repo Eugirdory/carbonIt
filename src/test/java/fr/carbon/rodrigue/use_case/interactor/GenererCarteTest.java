@@ -15,6 +15,7 @@ import java.util.List;
 import static fr.carbon.rodrigue.fixture.AventurierTestBuilder.unAventurier;
 import static fr.carbon.rodrigue.fixture.CarteTestBuilder.unCarte;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class GenererCarteTest {
@@ -81,6 +82,17 @@ class GenererCarteTest {
                 .build();
 
         assertThat(result).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(attendu);
+    }
 
+    @Test
+    public void executer_cas_non_passant_matrice_null_ThrowsException() {
+        assertThrows(RuntimeException.class,
+                () -> genererCarte.executer(null, null,null,null));
+    }
+
+    @Test
+    public void executer_cas_non_passant_matrice_vide_ThrowsException() {
+        assertThrows(RuntimeException.class,
+                () -> genererCarte.executer(new Case[0][0], null, null, null));
     }
 }
